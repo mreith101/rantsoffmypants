@@ -1,0 +1,21 @@
+# Sample docker-compose.yaml to build an NGINX container link to the database and mount a shared file folder!
+# Enjoy
+# Author: Michael the Turtle Admin
+# Website: https://www.rantoffmypants.com
+
+version: '3'
+services:
+  web:
+    image: "nginx:latest"
+    links:
+      - database
+    volumes:
+      - share-volume:/var/logs
+  database:
+    image: "mysql:latest"
+    volumes:
+      - share-volume:/var/log
+    environment:
+      - MYSQL_ROOT_PASSWORD=thisisreallyunsafe
+volumes:
+  share-volume:
